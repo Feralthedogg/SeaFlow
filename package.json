@@ -1,5 +1,5 @@
 {
-    "name": "seaflow",
+    "name": "@typesea/seaflow-kit",
     "version": "0.1.0",
     "description": "TypeSea-powered mock data generation and adversarial fuzzing.",
     "type": "module",
