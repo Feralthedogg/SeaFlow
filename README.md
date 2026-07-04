@@ -46,7 +46,7 @@ SeaFlow focuses on:
 ## Install
 
 ```sh
-npm i @typesea/fuzzer-seaflow typesea
+npm i fuzzer-seaflow typesea
 ```
 
 ---
@@ -62,7 +62,7 @@ import {
   sample,
   samples,
   suite
-} from "@typesea/fuzzer-seaflow";
+} from "fuzzer-seaflow";
 
 const User = t.strictObject({
   id: t.string.uuid(),
@@ -269,7 +269,7 @@ const targeted = [...fuzz(User, {
 Target values may also be factories.
 
 ```ts
-import type { Rng } from "@typesea/fuzzer-seaflow";
+import type { Rng } from "fuzzer-seaflow";
 
 const generatedTargets = [...fuzz(User, {
   seed: "factory",
@@ -289,7 +289,7 @@ const generatedTargets = [...fuzz(User, {
 ### Payload Packs
 
 ```ts
-import { payloadPacks, payloadValuesForPacks } from "@typesea/fuzzer-seaflow";
+import { payloadPacks, payloadValuesForPacks } from "fuzzer-seaflow";
 
 payloadPacks.security.values;
 const sqlAndXss = payloadValuesForPacks(["sqli", "xss"]);
@@ -317,7 +317,7 @@ const sqlAndXss = payloadValuesForPacks(["sqli", "xss"]);
 fixtures, manual attack cases, or production captures.
 
 ```ts
-import { inspect } from "@typesea/fuzzer-seaflow";
+import { inspect } from "fuzzer-seaflow";
 
 const inspection = inspect(User, [
   {
@@ -428,7 +428,7 @@ Direct callbacks are the lower-level escape hatch for tRPC routers, Fastify
 Case ids use the `sf:<seed>:<stream>:<index>:<strategy>` shape.
 
 ```ts
-import { parseCaseId, replay } from "@typesea/fuzzer-seaflow";
+import { parseCaseId, replay } from "fuzzer-seaflow";
 
 const id = "sf:attack:invalid:42:object.required";
 const parsed = parseCaseId(id);
@@ -472,7 +472,7 @@ arrays, and objects while the predicate still says the candidate reproduces the
 failure.
 
 ```ts
-import { shrink } from "@typesea/fuzzer-seaflow";
+import { shrink } from "fuzzer-seaflow";
 
 const smaller = await shrink(
   {
@@ -513,7 +513,7 @@ import {
   inspectCorpus,
   readCorpus,
   writeCorpus
-} from "@typesea/fuzzer-seaflow";
+} from "fuzzer-seaflow";
 
 const fuzzCases = [...fuzz(User, {
   seed: "corpus",
@@ -552,7 +552,7 @@ small SeaFlow contract graph with strings, numbers, objects, arrays, tuples,
 records, unions, intersections, wrappers, references, and opaque fallbacks.
 
 ```ts
-import { contractFromGuard, contractFromSchema } from "@typesea/fuzzer-seaflow";
+import { contractFromGuard, contractFromSchema } from "fuzzer-seaflow";
 
 const contract = contractFromGuard(User);
 const sameContract = contractFromSchema(User.schema);
