@@ -1,0 +1,62 @@
+{
+    "name": "seaflow",
+    "version": "0.1.0",
+    "description": "TypeSea-powered mock data generation and adversarial fuzzing.",
+    "type": "module",
+    "author": "feral",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Feralthedogg/SeaFlow.git"
+    },
+    "sideEffects": false,
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "keywords": [
+        "typescript",
+        "typesea",
+        "mock-data",
+        "fuzzing",
+        "generative-testing",
+        "runtime-validation"
+    ],
+    "files": [
+        "dist",
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "build": "node scripts/clean-dist.mjs && tsc -p tsconfig.build.json",
+        "check": "npm run typecheck && npm run lint && npm run test && npm run build && npm run check:compat && npm run check:dist && npm run check:pack",
+        "check:compat": "node scripts/typesea-compat.mjs",
+        "check:dist": "node scripts/dist-policy.mjs",
+        "check:pack": "node scripts/package-contents.mjs",
+        "lint": "eslint .",
+        "pack:dry": "npm pack --dry-run --ignore-scripts",
+        "prepack": "npm run check",
+        "test": "vitest run",
+        "typecheck": "tsc -p tsconfig.json --noEmit"
+    },
+    "engines": {
+        "node": ">=20.19"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "typesea": "^0.2.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@types/node": "^26.1.0",
+        "eslint": "^10.6.0",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.62.1",
+        "vitest": "^4.1.9"
+    }
+}
